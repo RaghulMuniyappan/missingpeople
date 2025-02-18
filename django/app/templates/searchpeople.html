@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{% static 'output.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="overflow-hidden">
+    
+         <div class="flex justify-between items-center w-[100vw] md:mb-3 p-2 mx-auto fixed top-0 left-0  h-16 bg-white shadow-md z-50">
+
+            <div class="">
+                <div>Logo</div>
+            </div>
+
+            <div class="hidden md:flex gap-10">
+                <a href="{%url 'home'%}">Home</a>
+                <a href= "{%url 'addpeople'%}">Add people</a>
+                <a href="{%url 'removepeople'%}">Remove people</a>
+                <a href="{%url 'aboutus'%}">About Us</a>
+            </div>
+          
+           <div class="md:hidden" id ="listbar">
+             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+            </svg>
+           </div>
+            
+       
+    
+        </div>
+
+        <!-- list items shown for small devices -->
+       <div class="hidden" id = "listitems">
+         <div class="flex flex-col text-center gap-4 mt-16 md:hidden">
+            <a class= "inline-block" href ="/src/index.html">Home</a>
+            <a class="inline-block" href="Adddetails.html">Add people</a>
+            <a class="inline-block" href="removepeople.html">Remove people</a>
+            <a class="inline-block" href="aboutus.html">About Us</a>
+        </div>
+       </div>  
+
+
+       <div class="mt-20 w-[430px] p-4 mx-auto">
+            <h1 class="text-4xl font-semibold">Find People</h1>
+            <p class="text-lg mt-2 mb-4">Search for people by name, location</p>
+
+            <form action="{% url 'show' %}" method="post" class="">
+                {%csrf_token%}
+                <div class="border border-black flex justify-between items-center p-3">
+                    <input type="search" name="name" id="" class="outline-none w-[70%] md:w-[95%]"> 
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search w-[10%]" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                </div>
+               
+            </form>
+
+
+
+            <!--
+            <div class="mt-5 overflow-scroll h-[60vh] scroll-none">
+
+                <div class="flex gap-3 items-center mb-3">
+                    <img class="h-20 w-20 object-cover rounded-full" src="https://images.unsplash.com/photo-1557862921-37829c790f19?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" alt="">
+                    <div class="">
+                        <h1>Name : karthi</h1>
+                        <p>Place Missing : coimbatore</p>
+                        <p>missing date : </p>
+                    </div>
+                
+                </div>
+
+                 <div class="flex gap-3 items-center mb-3">
+                    <img class="h-20 w-20 object-cover rounded-full" src="https://images.unsplash.com/photo-1557862921-37829c790f19?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" alt="">
+                    <div class="">
+                        <h1>Name : karthi</h1>
+                        <p>Place Missing : coimbatore</p>
+                        <p>missing date : </p>
+                    </div>
+                
+                </div>
+
+                 <div class="flex gap-3 items-center mb-3">
+                    <img class="h-20 w-20 object-cover rounded-full" src="https://images.unsplash.com/photo-1557862921-37829c790f19?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" alt="">
+                    <div class="">
+                        <h1>Name : karthi</h1>
+                        <p>Place Missing : coimbatore</p>
+                        <p>missing date : </p>
+                    </div>
+                
+                </div>
+
+                 <div class="flex gap-3 items-center mb-3">
+                    <img class="h-20 w-20 object-cover rounded-full" src="https://images.unsplash.com/photo-1557862921-37829c790f19?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" alt="">
+                    <div class="">
+                        <h1>Name : karthi</h1>
+                        <p>Place Missing : coimbatore</p>
+                        <p>missing date : </p>
+                    </div>
+                
+                </div>
+
+                 <div class="flex gap-3 items-center mb-3">
+                    <img class="h-20 w-20 object-cover rounded-full" src="https://images.unsplash.com/photo-1557862921-37829c790f19?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" alt="">
+                    <div class="">
+                        <h1>Name : karthi</h1>
+                        <p>Place Missing : coimbatore</p>
+                        <p>missing date : </p>
+                    </div>
+                
+                </div>
+
+                 <div class="flex gap-3 items-center mb-3">
+                    <img class="h-20 w-20 object-cover rounded-full" src="https://images.unsplash.com/photo-1557862921-37829c790f19?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" alt="">
+                    <div class="">
+                        <h1>Name : karthi</h1>
+                        <p>Place Missing : coimbatore</p>
+                        <p>missing date : </p>
+                    </div>
+                
+                </div>
+
+                 <div class="flex gap-3 items-center mb-3">
+                    <img class="h-20 w-20 object-cover rounded-full" src="https://images.unsplash.com/photo-1557862921-37829c790f19?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" alt="">
+                    <div class="">
+                        <h1>Name : karthi</h1>
+                        <p>Place Missing : coimbatore</p>
+                        <p>missing date : </p>
+                    </div>
+                
+                </div>
+
+                 <div class="flex gap-3 items-center mb-3">
+                    <img class="h-20 w-20 object-cover rounded-full" src="https://images.unsplash.com/photo-1557862921-37829c790f19?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" alt="">
+                    <div class="">
+                        <h1>Name : karthi</h1>
+                        <p>Place Missing : coimbatore</p>
+                        <p>missing date : </p>
+                    </div>
+                
+                </div>
+            
+            </div>
+        -->
+       
+       </div>
+
+
+    </div>
+
+    <script src="{% static 'app.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{%static 'output.css'%}" rel="stylesheet">
+</head>
+<body>
+    <div class="h-[100vh]">
+
+        <!-- home page -->
+
+        <!-- navbar-->
+        <div class="flex justify-between items-center w-[100vw] md:mb-3 p-2 mx-auto fixed top-0 left-0  h-16 bg-white shadow-md z-50">
+
+            <div class="">
+                <div>Logo</div>
+            </div>
+
+            <div class="hidden md:flex gap-10">
+                <a href= "{%url 'addpeople' %}">Add people</a>
+                <a href="{%url 'removepeople'%}">Remove people</a>
+                <a href="{%url 'search'%}">Search people</a>
+                <a href="{%url 'aboutus'%}">About Us</a>
+            </div>
+          
+           <div class="md:hidden" id ="listbar">
+             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+            </svg>
+           </div>
+            
+       
+    
+        </div>
+
+        <!-- list items shown for small devices -->
+       <div class="hidden" id = "listitems">
+         <div class="flex flex-col text-center gap-4 mt-16 md:hidden">
+            <a class="inline-block" href="Adddetails.html">Add people</a>
+            <a class="inline-block" href="removepeople.html">Remove people</a>
+            <a class="inline-block" href="searchpeople.html">Search</a>
+            <a class="inline-block" href="aboutus.html">About Us</a>
+        </div>
+       </div>   
+
+
+        <!-- corousel  -->
+
+        <div class="relative w-full h-[40vh] xl:h-[70vh] object-cover mt-4">
+        <!-- Carousel wrapper -->
+        <div class="carousel-wrapper relative w-full h-full overflow-hidden">
+          <!-- Carousel inner -->
+          <div class="carousel-inner relative w-full h-full">
+            <!-- Carousel items -->
+            <div class="carousel-item w-full h-full">
+              <img src="https://plus.unsplash.com/premium_photo-1675805015392-28fd80c551ec?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bmF0dXJlfGVufDB8MHwwfHx8MA%3D%3D" alt="Image 1" class="w-full h-full  mx-auto aspect-w-16 aspect-h-9">
+            </div>
+            <div class="carousel-item w-full h-full">
+              <img src="https://images.unsplash.com/photo-1470813740244-df37b8c1edcb?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bmF0dXJlfGVufDB8MHwwfHx8MA%3D%3D" alt="Image 2" class="w-full h-full  mx-auto aspect-w-16 aspect-h-9">
+            </div>
+            <div class="carousel-item w-full h-full">
+              <img src="https://plus.unsplash.com/premium_photo-1681426618547-4158e5d6dcd7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjV8fHNreXxlbnwwfDB8MHx8fDA%3D" alt="Image 3" class="w-full h-full   mx-auto aspect-w-16 aspect-h-9">
+            </div>
+            <!-- Add more carousel items here -->
+          </div>
+        </div>
+        <!-- Carousel controls -->
+        <button class="absolute top-1/2 left-0 z-10 p-4 text-white bg-opacity-50 hover:bg-opacity-75 transition duration-300 ease-in-out" onclick="prevSlide()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button class="absolute top-1/2 right-0 z-10 p-4 text-white text-3xl  bg-opacity-50 hover:bg-opacity-75 transition duration-300 ease-in-out" onclick="nextSlide()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+
+      <h1 class="text-3xl mt-5 ml-3 mb-5 font-semibold">Latest people missed >></h1>
+
+      <!-- cards -->
+
+      <div class="bg-gray-100">
+        <div class="hidden p-3  md:flex gap-11 flex-wrap justify-center">
+        {% for i in key%}
+        {% if i%}
+        <div class="mt-4  inline  mb-8">
+          <div class="text-center rounded-lg bg-slate-100 w-[250px] shadow-lg p-2 border">
+            <div class="flex justify-center">
+              <img src="{{i.image.url}}" class="rounded-lg h-44 w-44 object-cover" alt="">
+            </div>
+            <h1>{{i.name}}</h1>
+            <p>+91 {{i.cpn1}}</p>
+            <p>{{i.district}}, {{i.state}}</p>
+          </div>
+        </div>
+        {%endif%}
+        {%endfor%}
+        </div>
+
+      
+
+      
+
+
+      <!-- feedback show -->
+
+      <div class="mt-5 p-3">
+        <div class="text-center">
+          <h1 class="text-4xl font-semibold">What Our Families Say</h1>
+          <h1 class="text-xl"> from the people who have experienced the power of our platform.</h1>
+        </div>
+        
+        <div class="mt-10  flex gap-5 flex-wrap">
+          <div class="w-[340px] shadow-xl flex-grow border p-4">
+
+            <div class="flex gap-4 items-center ">
+              <img src="https://images.unsplash.com/photo-1624140716840-5d89f311f500?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWFufGVufDB8fDB8fHww" class="h-12 w-12 object-cover rounded-full" alt="">
+              <div>
+                <h1>Hohn Doe</h1>
+                <p>CEO, Acme Inc</p>
+              </div>
+            </div>
+
+            <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, quaerat error molestias numquam sit in distinctio eligendi saepe earum sed labore cum dolorum fugiat non.</p>
+          
+          </div>
+
+          <div class="w-[340px] shadow-xl flex-grow border p-4">
+
+            <div class="flex gap-4 items-center ">
+              <img src="https://images.unsplash.com/photo-1624140716840-5d89f311f500?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWFufGVufDB8fDB8fHww" class="h-12 w-12 object-cover rounded-full" alt="">
+              <div>
+                <h1>Hohn Doe</h1>
+                <p>CEO, Acme Inc</p>
+              </div>
+            </div>
+
+            <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, quaerat error molestias numquam sit in distinctio eligendi saepe earum sed labore cum dolorum fugiat non.</p>
+          
+          </div>
+
+          <div class="w-[340px] shadow-xl flex-grow border p-4">
+
+            <div class="flex gap-4 items-center ">
+              <img src="https://images.unsplash.com/photo-1624140716840-5d89f311f500?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWFufGVufDB8fDB8fHww" class="h-12 w-12 object-cover rounded-full" alt="">
+              <div>
+                <h1>Hohn Doe</h1>
+                <p>CEO, Acme Inc</p>
+              </div>
+            </div>
+
+            <p class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, quaerat error molestias numquam sit in distinctio eligendi saepe earum sed labore cum dolorum fugiat non.</p>
+          
+          </div>
+        
+        </div>
+
+        
+
+        
+      
+      </div>
+
+      <!-- feedback entry -->
+      <div class=" bg-gray-100">
+        <h1 class="text-4xl mt-5 p-3 font-semibold">Feedback</h1>
+        <div class="mt-5 p-3">
+          <form action="" method="">
+            <div class="mb-4">
+              <label for="" >Name</label> <br>
+              <input type="text" placeholder="Enter your name" class=" w-[80vw] md:w-[50vw] xl:w-[30vw] border p-2"> 
+            </div>
+
+            <div class="mb-4">
+              <label for="">Email</label> <br>
+              <input type="text" placeholder="Enter your email" class="w-[80vw] md:w-[50vw] xl:w-[30vw] border p-2 "> 
+
+            </div>
+
+            <div class="">
+              <label for="">Feedback</label> <br>
+              <textarea name="feedback" id="" class="border p-2 h-[180px] w-[80vw] md:w-[50vw] xl:w-[30vw]" placeholder="Enter your Feedback"></textarea> 
+
+            </div>
+            
+            <input type="submit" value="Submit" class="px-3 py-2 border rounded-lg mt-3 text-white bg-black">
+
+          
+          </form>
+        
+        </div>
+      </div>
+      
+
+      <!-- footer -->
+
+      <div class="mt-5 p-4 text-center bg-gray-200 md:flex justify-between">
+
+        <h1>© 2024 Company Inc. All rights reserved.</h1>
+
+        <div class="md:flex gap-3">
+          <a href="">Twitter <span class="md:hidden"> |</span></a>
+          <a href="">Facebook <span class="md:hidden"> |</span></a>
+          <a href="">Email <span class="md:hidden"> |</span></a>
+          <a href="">Contact <span class="md:hidden"> |</span></a>
+
+        </div>
+
+      
+      </div>
+
+     
+     <!-- addpage -->
+
+      
+
+       
+     
+
+
+
+
+    </div>
+
+
+    <script src="{% static 'app.js' %}"></script>
+</body>
+</html>

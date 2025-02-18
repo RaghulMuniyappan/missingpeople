@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="{% static 'output.css' %}" rel="stylesheet">
+</head>
+<body>
+    <div class="">
+    
+        <!-- navbar-->
+        <div class="flex justify-between items-center w-full md:mb-3 p-2 mx-auto fixed top-0 left-0  h-16 bg-white shadow-md z-50">
+
+            <div class="">
+                <div>Logo</div>
+            </div>
+
+            <div class="hidden md:flex gap-10">
+                <a href="{%url 'home'%}">Home</a>
+                <a href= "{%url 'addpeople'%}">Add people</a>
+                <a href="{%url 'search'%}">Search people</a>
+                <a href="{%url 'aboutus'%}">About Us</a>
+            </div>
+          
+           <div class="md:hidden" id ="listbar">
+             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+            </svg>
+           </div>
+            
+       
+    
+        </div>
+
+        <!-- list items shown for small devices -->
+       <div class="hidden" id = "listitems">
+         <div class="flex flex-col text-center gap-4 mt-16 md:hidden">
+            <a class="inline-block" href="/src/index.html">Home</a>
+            <a class="inline-block" href="Adddetails.html">Add people</a>
+            <a class="inline-block" href="searchpeople.html">Search</a>
+            <a class="inline-block" href="aboutus.html">About Us</a>
+        </div>
+       </div>  
+
+
+       <!--  -->
+
+       <div class="mt-20 p-5">
+            <h1 class="text-4xl font-semibold mb-4">Update: Person Found!</h1>
+            <p class="text-xl">If the missing person you reported has been found, please let us know so we can update our records and remove their information from our database. This will help us ensure that our resources are focused on finding those who are still missing. By deleting the report, you will also help us maintain the accuracy and integrity of our system.</p>
+        </div>
+
+       <div class="mt-14 w-[430px] mx-auto">
+            <form action="{% url 'delete' %}" method="post" class="p-5 text-center bg-slate-200">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="">ID</label><br>
+                    <input type="text" name="id" placeholder="enter the Id" class="p-2 border w-full">
+                </div>
+
+                <div class="mb-3">
+                    <label for="">Password</label><br>
+                    <input type="passwd" name="passwd" placeholder="enter the Password" class="p-2 border w-full">
+                </div>
+
+                <div>
+                    <input type="submit" value="submit" class="px-3 py-2 border bg-black mt-3 text-white">
+                </div>
+            </form>
+
+        </div>
+
+        <p class="text-xl italic text-center mt-4 p-5">" We are overjoyed to hear that your loved one has been found! This is a moment of great relief and happiness for you and your family. We are honored to have played a small part in bringing you closer to your loved one, and we wish you all the best as you reunite and move forward together."</p>
+
+
+    </div>
+
+    <script src="{% static 'app.js' %}"></script>
+</body>
+</html>
